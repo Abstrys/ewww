@@ -1,0 +1,22 @@
+
+body {
+	background-color: #424242;
+	color: #CFCFCF;
+	margin-left: 0.75in;
+	margin-right: 0.75in;
+}
+
+a:link {
+	color: #33CCFF;
+}
+
+a:active {
+	color: #33CCFF;
+}
+
+a:visited {
+	color: #00CCFF;
+}
+
+h2 { color: #FF0a0a }
+

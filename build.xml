@@ -1,0 +1,48 @@
+<project name="Ewww" default="app" basedir=".">
+	<description>Build file for the Ewww Java App.</description>
+
+	<!-- set global properties for this build -->
+	<property name="builddir" location="./build"/>
+	<property name="distdir"  location="./dist"/>
+	<property name="docsdir"  location="./docs"/>
+
+	<property name="src" value="Ewww.java HTTPRequest.java"/>
+
+	<!-- THE BUILD TARGETS -->
+	<target name="initbuild">
+		<tstamp/> <!-- Create the time stamp -->
+		<!-- create the necessary directories -->
+		<mkdir dir="${builddir}"/>
+		<mkdir dir="${distdir}/${DSTAMP}"/>
+	</target>
+
+	<target name="app" depends="initbuild" description="build the Ewww application">
+		<javac includes="${src}" srcdir="." destdir="${builddir}" listfiles="yes"/>
+		<jar jarfile="${distdir}/${DSTAMP}/Ewww.jar" basedir="${builddir}">
+			<fileset dir="${builddir}"/>
+			<manifest>
+				<attribute name="Main-Class" value="Ewww"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="docs" description="build the documentation">
+		<mkdir dir="${docsdir}"/>
+		<javadoc destdir="${docsdir}">
+			<fileset dir=".">
+				<include name="*.java"/>
+				<exclude name="*Test*"/>
+			</fileset>
+		</javadoc>
+	</target>
+
+	<target name="clean" description="clean up the build files">
+		<delete dir="${builddir}"/>
+	</target>
+
+	<target name="spotless" depends="clean" description="clean up everything">
+		<delete dir="${distdir}"/>
+		<delete dir="${docsdir}"/>
+	</target>
+</project>
+
